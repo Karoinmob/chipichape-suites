@@ -6,16 +6,31 @@
 
 <style>
 
+:root{
+--bg:#ffffff;
+--text:#1a1a1a;
+--section:#f5f5f5;
+--button:#000000;
+}
+
+body.dark{
+--bg:#111;
+--text:#f2f2f2;
+--section:#1c1c1c;
+--button:#ffffff;
+}
+
 body{
 font-family: Arial, sans-serif;
 margin:0;
-background:#ffffff;
-color:#1a1a1a;
+background:var(--bg);
+color:var(--text);
+transition:background .4s,color .4s;
 }
 
 header{
 height:90vh;
-background-image:url("hero.jpg");
+background-image:url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85");
 background-size:cover;
 background-position:center;
 display:flex;
@@ -23,11 +38,12 @@ align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
+position:relative;
 }
 
 header h1{
 font-size:48px;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.45);
 padding:20px;
 border-radius:10px;
 }
@@ -39,51 +55,101 @@ right:30px;
 }
 
 button{
-background:black;
-color:white;
+background:var(--button);
+color:var(--bg);
 border:none;
 padding:12px 20px;
 margin:5px;
 cursor:pointer;
-border-radius:5px;
+border-radius:6px;
+font-size:14px;
 }
 
 .section{
-padding:60px 15%;
+padding:60px 12%;
 }
 
 .gallery{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:15px;
+margin-top:20px;
 }
 
 .gallery img{
 width:100%;
 border-radius:10px;
+height:220px;
+object-fit:cover;
 }
 
 .amenities{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px;
+gap:12px;
 font-size:18px;
+margin-top:20px;
 }
 
 .reviews{
-background:#f5f5f5;
-padding:60px 15%;
+background:var(--section);
+padding:60px 12%;
 }
 
 .review{
-margin-bottom:20px;
+margin-bottom:25px;
+background:var(--bg);
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
+
+.map-buttons{
+margin-top:15px;
+}
+
+.calendar{
+margin-top:25px;
+border:1px solid #ccc;
+border-radius:10px;
+overflow:hidden;
+}
+
+.calendar table{
+width:100%;
+border-collapse:collapse;
+text-align:center;
+}
+
+.calendar th{
+background:var(--section);
+padding:10px;
+}
+
+.calendar td{
+padding:12px;
+border:1px solid #e0e0e0;
+}
+
+.available{background:#c8f7c5}
+.booked{background:#ffd6d6}
 
 footer{
 background:#000;
 color:white;
 text-align:center;
-padding:30px;
+padding:35px;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -93,22 +159,48 @@ padding:30px;
 function setLanguage(lang){
 
 if(lang=="es"){
-document.getElementById("title").innerText="Suite de Lujo frente a Chipichape"
-document.getElementById("desc").innerText="Apartamento moderno con piscina, gimnasio y balcón."
-document.getElementById("amenTitle").innerText="Comodidades"
-document.getElementById("locTitle").innerText="Ubicación"
-document.getElementById("revTitle").innerText="Reseñas"
+ document.getElementById("title").innerText="Suite de Lujo frente a Chipichape"
+ document.getElementById("desc").innerText="Apartamento moderno con piscina, gimnasio y balcón."
+ document.getElementById("amenTitle").innerText="Comodidades"
+ document.getElementById("locTitle").innerText="Ubicación"
+ document.getElementById("revTitle").innerText="Reseñas"
+ document.getElementById("calTitle").innerText="Disponibilidad"
+ document.getElementById("reserve1").innerText="Reservar por WhatsApp"
+ document.getElementById("reserve2").innerText="Ver en Airbnb"
+ document.getElementById("directions").innerText="Cómo llegar"
 }
 
 if(lang=="en"){
-document.getElementById("title").innerText="Luxury Suite near Chipichape"
-document.getElementById("desc").innerText="Modern studio with pool, gym and balcony."
-document.getElementById("amenTitle").innerText="Amenities"
-document.getElementById("locTitle").innerText="Location"
-document.getElementById("revTitle").innerText="Reviews"
+ document.getElementById("title").innerText="Luxury Suite near Chipichape"
+ document.getElementById("desc").innerText="Modern studio with pool, gym and balcony."
+ document.getElementById("amenTitle").innerText="Amenities"
+ document.getElementById("locTitle").innerText="Location"
+ document.getElementById("revTitle").innerText="Reviews"
+ document.getElementById("calTitle").innerText="Availability"
+ document.getElementById("reserve1").innerText="Book via WhatsApp"
+ document.getElementById("reserve2").innerText="View on Airbnb"
+ document.getElementById("directions").innerText="Get directions"
 }
 
 }
+
+function toggleDark(){
+ document.body.classList.toggle("dark")
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("active")
+}
+})
+})
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
+
+})
 
 </script>
 
@@ -119,6 +211,7 @@ document.getElementById("revTitle").innerText="Reviews"
 <nav>
 <button onclick="setLanguage('es')">ES</button>
 <button onclick="setLanguage('en')">EN</button>
+<button onclick="toggleDark()">🌙</button>
 </nav>
 
 <header>
@@ -129,41 +222,31 @@ document.getElementById("revTitle").innerText="Reviews"
 
 <br>
 
-<button onclick="window.location.href='https://wa.me/57TU_NUMERO'">
-Reservar por WhatsApp
-</button>
+<button id="reserve1" onclick="window.location.href='https://wa.me/573000000000'">Reservar por WhatsApp</button>
 
-<button onclick="window.location.href='https://airbnb.com'">
-Ver en Airbnb
-</button>
+<button id="reserve2" onclick="window.location.href='https://airbnb.com'">Ver en Airbnb</button>
 
 </div>
 
 </header>
 
-<div class="section">
-
+<div class="section reveal">
 <h2>Galería</h2>
 
 <div class="gallery">
-
-<img src="foto1.jpg">
-<img src="foto2.jpg">
-<img src="foto3.jpg">
-<img src="foto4.jpg">
-<img src="foto5.jpg">
-<img src="foto6.jpg">
-
+<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2">
+<img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4">
+<img src="https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa">
+<img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0">
+<img src="https://images.unsplash.com/photo-1582582494700-6c2c9b7e7a08">
+<img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6">
+</div>
 </div>
 
-</div>
-
-<div class="section">
-
+<div class="section reveal">
 <h2 id="amenTitle">Comodidades</h2>
 
 <div class="amenities">
-
 <div>✔ Wifi rápido</div>
 <div>✔ Piscina</div>
 <div>✔ Gimnasio</div>
@@ -172,50 +255,50 @@ Ver en Airbnb
 <div>✔ Balcón privado</div>
 <div>✔ Lavandería</div>
 <div>✔ Aire acondicionado</div>
-
 </div>
 
 </div>
 
-<div class="section">
+<div class="section reveal">
+<h2 id="calTitle">Disponibilidad</h2>
+
+<p>Ejemplo de calendario (verde disponible / rojo reservado)</p>
+
+<div class="calendar">
+<table>
+<tr>
+<th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th><th>D</th>
+</tr>
+<tr>
+<td class="available">1</td>
+<td class="available">2</td>
+<td class="booked">3</td>
+<td class="booked">4</td>
+<td class="available">5</td>
+<td class="available">6</td>
+<td class="available">7</td>
+</tr>
+<tr>
+<td class="available">8</td>
+<td class="available">9</td>
+<td class="available">10</td>
+<td class="booked">11</td>
+<td class="booked">12</td>
+<td class="available">13</td>
+<td class="available">14</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<div class="section reveal">
 
 <h2 id="locTitle">Ubicación</h2>
 
-<p>
-Ubicado frente al Centro Comercial Chipichape en una de las mejores zonas de Cali.
-</p>
+<p>Ubicado frente al centro comercial Chipichape.</p>
 
-<iframe
-src="https://maps.google.com/maps?q=chipichape%20cali&t=&z=15&ie=UTF8&iwloc=&output=embed"
-width="100%"
-height="350"
-style="border:0;">
-</iframe>
+<iframe src="https://maps.google.com/maps?q=chipichape%20cali&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="350" style="border:0;border-radius:10px;"></iframe>
 
-</div>
-
-<div class="reviews">
-
-<h2 id="revTitle">Reseñas</h2>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Excelente ubicación y apartamento muy moderno.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>La vista desde el balcón es increíble. Muy recomendado.</p>
-</div>
-
-</div>
-
-<footer>
-
-Luxury Suite Chipichape  
-Cali, Colombia
-
-</footer>
-
-</body>
-</html>
+<div class="map-buttons">
+<button id="directions" onclick="window.open('https://www.google.com/maps/dir/?api=1&dest
