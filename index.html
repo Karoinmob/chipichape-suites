@@ -1,466 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Luxury Suite Chipichape</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Duna Studio | Loft cerca a Chipichape | Cali</title>
 
 <style>
 
-:root{
---bg:#fafafa;
---surface:#ffffff;
---text:#222;
---muted:#6b6b6b;
---accent:#1e1e1e;
---border:#e9e9e9;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-
-body.dark{
---bg:#0e0e0e;
---surface:#161616;
---text:#f3f3f3;
---muted:#a1a1a1;
---accent:#ffffff;
---border:#2a2a2a;
-}
-
-*{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
-transition:background .4s,color .4s;
+font-family: Arial, Helvetica, sans-serif;
+background:#F5F5F5;
+color:#1E2A38;
 line-height:1.6;
 }
 
-h1,h2,h3{
-font-family:'Playfair Display',serif;
-margin:0;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-}
+/* NAVBAR */
 
 nav{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(255,255,255,.75);
-backdrop-filter:blur(12px);
-border-bottom:1px solid var(--border);
-padding:14px 40px;
+background:white;
 display:flex;
-justify-content:flex-end;
-z-index:10;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
-body.dark nav{
-background:rgba(0,0,0,.55);
+.logo{
+font-size:22px;
+font-weight:bold;
+letter-spacing:2px;
+color:#1E2A38;
 }
 
-nav button{
-background:none;
-border:1px solid var(--border);
-color:var(--text);
-padding:6px 14px;
-margin-left:10px;
-border-radius:20px;
-font-size:13px;
-cursor:pointer;
+nav a{
+text-decoration:none;
+color:#1E2A38;
+margin-left:20px;
+font-weight:600;
 }
 
-header{
-height:92vh;
-background-image:url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85");
+/* HERO */
+
+.hero{
+height:90vh;
+background-image:url("balcon.jpg");
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:center;
 position:relative;
-color:white;
 }
 
-header::after{
-content:"";
+.overlay{
+background:rgba(30,42,56,0.45);
 position:absolute;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.65));
 }
 
-.hero{
+.hero-content{
 position:relative;
-z-index:2;
-max-width:640px;
-padding:40px;
+text-align:center;
+color:white;
+max-width:700px;
+padding:20px;
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:12px;
+font-size:56px;
+letter-spacing:4px;
+margin-bottom:15px;
 }
 
 .hero p{
-font-size:18px;
-opacity:.9;
+font-size:20px;
+margin-bottom:30px;
 }
 
-.hero-buttons{
-margin-top:30px;
+.btn{
+background:#CFC6BE;
+color:#1E2A38;
+padding:14px 28px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+transition:0.3s;
 }
 
-.hero-buttons button{
-background:white;
-color:black;
-border:none;
-padding:14px 26px;
-border-radius:40px;
-margin:6px;
-font-weight:500;
-font-size:14px;
-cursor:pointer;
-box-shadow:0 8px 25px rgba(0,0,0,.2);
-transition:.3s;
+.btn:hover{
+background:#D8A86A;
 }
 
-.hero-buttons button:hover{
-transform:translateY(-2px);
-}
+/* SECCIONES */
 
 .section{
-padding:110px 40px;
+padding:70px 10%;
+text-align:center;
 }
 
 .section h2{
-font-size:34px;
+margin-bottom:20px;
+font-size:32px;
+}
+
+.section p{
+max-width:700px;
+margin:auto;
+}
+
+/* CARDS */
+
+.features{
+display:flex;
+gap:30px;
+justify-content:center;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:30px;
+width:260px;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h3{
 margin-bottom:10px;
 }
 
-.section-sub{
-color:var(--muted);
-margin-bottom:40px;
-}
+/* GALERIA */
 
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:22px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+padding:60px 10%;
 }
 
 .gallery img{
 width:100%;
-height:240px;
-object-fit:cover;
-border-radius:14px;
-box-shadow:0 12px 35px rgba(0,0,0,.08);
-transition:.35s;
+border-radius:8px;
 }
 
-.gallery img:hover{
-transform:scale(1.04);
-}
+/* CTA */
 
-.amenities{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:16px;
-margin-top:35px;
-}
-
-.amenities div{
-background:var(--surface);
-padding:18px 22px;
-border-radius:12px;
-border:1px solid var(--border);
-box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
-
-.calendar{
-margin-top:40px;
-border-radius:14px;
-overflow:hidden;
-border:1px solid var(--border);
-background:var(--surface);
-}
-
-.calendar table{
-width:100%;
-border-collapse:collapse;
-}
-
-.calendar th{
-background:var(--surface);
-padding:14px;
-font-weight:500;
-color:var(--muted);
-}
-
-.calendar td{
-padding:16px;
-text-align:center;
-border-top:1px solid var(--border);
-}
-
-.available{background:#e9f9ea}
-.booked{background:#ffeaea}
-
-.map-card{
-background:var(--surface);
-padding:18px;
-border-radius:16px;
-box-shadow:0 10px 35px rgba(0,0,0,.06);
-border:1px solid var(--border);
-margin-top:30px;
-}
-
-iframe{
-width:100%;
-height:340px;
-border:none;
-border-radius:10px;
-}
-
-.map-buttons{
-margin-top:16px;
-}
-
-.map-buttons button{
-background:var(--accent);
-color:var(--bg);
-border:none;
-padding:11px 22px;
-border-radius:25px;
-cursor:pointer;
-font-size:14px;
-}
-
-.reviews{
-background:linear-gradient(180deg,var(--bg),var(--surface));
-}
-
-.review-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-margin-top:35px;
-}
-
-.review{
-background:var(--surface);
-padding:26px;
-border-radius:14px;
-border:1px solid var(--border);
-box-shadow:0 10px 30px rgba(0,0,0,.06);
-}
-
-.review p{
-margin:10px 0;
-color:var(--muted);
-}
-
-footer{
+.cta{
+background:#1E2A38;
+color:white;
 text-align:center;
 padding:70px 20px;
+}
+
+.cta h2{
+margin-bottom:20px;
+}
+
+.cta a{
+background:#CFC6BE;
+color:#1E2A38;
+padding:15px 30px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:25px;
 font-size:14px;
-color:var(--muted);
-}
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all .8s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
 }
 
 </style>
-
-<script>
-
-function setLanguage(lang){
-
-if(lang=="es"){
- document.getElementById("title").innerText="Suite de Lujo frente a Chipichape"
- document.getElementById("desc").innerText="Apartamento moderno con piscina, gimnasio y balcón"
- document.getElementById("amenTitle").innerText="Comodidades"
- document.getElementById("locTitle").innerText="Ubicación"
- document.getElementById("revTitle").innerText="Reseñas"
- document.getElementById("calTitle").innerText="Disponibilidad"
-}
-
-if(lang=="en"){
- document.getElementById("title").innerText="Luxury Suite near Chipichape"
- document.getElementById("desc").innerText="Modern studio with pool, gym and balcony"
- document.getElementById("amenTitle").innerText="Amenities"
- document.getElementById("locTitle").innerText="Location"
- document.getElementById("revTitle").innerText="Reviews"
- document.getElementById("calTitle").innerText="Availability"
-}
-
-}
-
-function toggleDark(){
- document.body.classList.toggle("dark")
-}
-
-window.addEventListener("DOMContentLoaded",()=>{
-
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add("active")}
-})
-})
-
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
-
-})
-
-</script>
 
 </head>
 
 <body>
 
 <nav>
-<button onclick="setLanguage('es')">ES</button>
-<button onclick="setLanguage('en')">EN</button>
-<button onclick="toggleDark()">🌙</button>
+
+<div class="logo">DUNA STUDIO</div>
+
+<div>
+<a href="#about">El Loft</a>
+<a href="#gallery">Galería</a>
+<a href="#reservar">Reservar</a>
+</div>
+
 </nav>
 
-<header>
+<section class="hero">
 
-<div class="hero">
-<h1 id="title">Suite de Lujo frente a Chipichape</h1>
-<p id="desc">Apartamento moderno con piscina, gimnasio y balcón</p>
+<div class="overlay"></div>
 
-<div class="hero-buttons">
-<button onclick="window.location.href='https://wa.me/573000000000'">Reservar</button>
-<button onclick="window.location.href='https://airbnb.com'">Airbnb</button>
+<div class="hero-content">
+
+<h1>DUNA STUDIO</h1>
+
+<p>Loft moderno con balcón a pasos de Chipichape en Cali</p>
+
+<a class="btn" href="#reservar">Reservar en Airbnb</a>
+
+</div>
+
+</section>
+
+<section class="section" id="about">
+
+<h2>Tu espacio en Cali</h2>
+
+<p>
+Un apartaestudio elegante con tonos arena Capri, madera Fresno Europeo y detalles en azul navy.
+Diseñado para descansar, trabajar o disfrutar la ciudad con comodidad.
+</p>
+
+<div class="features">
+
+<div class="card">
+<h3>📍 Ubicación</h3>
+<p>A pocos minutos del centro comercial Chipichape y zonas gastronómicas.</p>
+</div>
+
+<div class="card">
+<h3>🌅 Balcón privado</h3>
+<p>Ideal para café en la mañana o ver el atardecer de Cali.</p>
+</div>
+
+<div class="card">
+<h3>✨ Diseño moderno</h3>
+<p>Interior minimalista con tonos arena, madera natural y azul profundo.</p>
 </div>
 
 </div>
 
-</header>
+</section>
 
-<div class="section reveal">
-<div class="container">
-<h2>Galería</h2>
-<p class="section-sub">Un espacio moderno y cómodo diseñado para estancias perfectas.</p>
+<section class="gallery" id="gallery">
 
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2">
-<img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4">
-<img src="https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa">
-<img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0">
-<img src="https://images.unsplash.com/photo-1582582494700-6c2c9b7e7a08">
-<img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6">
-</div>
-</div>
-</div>
+<img src="balcon.jpg">
+<img src="sala.jpg">
+<img src="cocina.jpg">
+<img src="habitacion.jpg">
 
-<div class="section reveal">
-<div class="container">
-<h2 id="amenTitle">Comodidades</h2>
-<p class="section-sub">Todo lo necesario para una estancia cómoda.</p>
+</section>
 
-<div class="amenities">
-<div>Wifi rápido</div>
-<div>Piscina</div>
-<div>Gimnasio</div>
-<div>Cocina equipada</div>
-<div>Smart TV</div>
-<div>Balcón privado</div>
-<div>Lavandería</div>
-<div>Aire acondicionado</div>
-</div>
+<section class="cta" id="reservar">
 
-</div>
-</div>
+<h2>Reserva tu estadía en Duna Studio</h2>
 
-<div class="section reveal">
-<div class="container">
-<h2 id="calTitle">Disponibilidad</h2>
-<p class="section-sub">Ejemplo de calendario de disponibilidad.</p>
+<p>Disponible en Airbnb</p>
 
-<div class="calendar">
-<table>
-<tr>
-<th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th><th>D</th>
-</tr>
-<tr>
-<td class="available">1</td>
-<td class="available">2</td>
-<td class="booked">3</td>
-<td class="booked">4</td>
-<td class="available">5</td>
-<td class="available">6</td>
-<td class="available">7</td>
-</tr>
-</table>
-</div>
+<br>
 
-</div>
-</div>
+<a href="#">Ver disponibilidad</a>
 
-<div class="section reveal">
-<div class="container">
-<h2 id="locTitle">Ubicación</h2>
-<p class="section-sub">Frente a Chipichape, una de las mejores zonas de Cali.</p>
-
-<div class="map-card">
-<iframe src="https://maps.google.com/maps?q=chipichape%20cali&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-
-<div class="map-buttons">
-<button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=Chipichape+Cali')">Cómo llegar</button>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="section reviews reveal">
-<div class="container">
-<h2 id="revTitle">Reseñas</h2>
-<p class="section-sub">Experiencias de huéspedes.</p>
-
-<div class="review-grid">
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Excelente ubicación y apartamento muy moderno.</p>
-<b>Daniel – Canadá</b>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>La vista desde el balcón es increíble.</p>
-<b>Laura – Bogotá</b>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Muy cómodo para viajes de trabajo o vacaciones.</p>
-<b>Michael – USA</b>
-</div>
-
-</div>
-
-</div>
-</div>
+</section>
 
 <footer>
-Luxury Suite Chipichape • Cali, Colombia
+
+<p>Duna Studio · Cali, Colombia · Cerca a Chipichape</p>
+
 </footer>
 
 </body>
